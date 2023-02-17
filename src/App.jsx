@@ -3,6 +3,7 @@ import "aframe"
 import {Entity, Scene} from "aframe-react"
 import './App.css'
 import axios from "axios"
+import "aframe-lines"
 
 function App() {
   const [datas, setData] = useState([])
@@ -45,7 +46,7 @@ function App() {
       {/* <Entity camera position='0 1.6 0' look-controls /> */}
 
       {/* Add frame */}
-      <Entity geometry={{ primitive: 'box', width: 12, height: 12, depth: 0.1 }}
+      <Entity geometry={{ primitive: 'box', width: 13, height: 13, depth: 0.1 }}
               // material={{ color: 'gray' }}
               position={{x: 0 , y:3 , z:-5}}
               // animation={{property: 'rotation', dur: 25000, loop:true, to: '0 360 0' }}
@@ -67,6 +68,27 @@ function App() {
         ></Entity>
           </Entity>
       }
+      {/* <Entity geometry={{ primitive: 'line', start: '0 0 0', end: '0 15 0', lineWidth: '0.05' }}
+      material={{ color: 'red' }}
+      position={'-5 0 0'} /> */}
+       <Entity position={{ x: -3.2, y: 4.8, z: 0 }}>
+        <a-text
+          value="Temp"
+          color="red"
+          width="4"
+          height="4"
+          font="https://cdn.aframe.io/fonts/Exo2Bold.fnt"
+        />
+        <Entity
+          material={{ shader: "flat", color: "transparent" }}
+          geometry={{ primitive: "plane", width: "auto", height: "auto" }}
+          position="0 2.0 -0.1"
+        ></Entity>
+          </Entity>
+      <Entity position="-2.5 -10 0">
+      <a-entity lines="points: 0 15 0, 0 10 0, 5 10 0; color:grey"></a-entity>
+      </Entity>
+      
       {/* Add bars */}
       {
         datas.map((data, index) => {
@@ -78,7 +100,7 @@ function App() {
               <Entity 
           geometry={{ primitive: 'box', width: 0.5 , height: data.temp / 2, depth: 1}}
           material={{color}}
-          position={`${index - (datas.length / 2)} ${data.temp / 3 - data.max_temp / 15} -5`}
+          position={`${index - (datas.length / 1.6)} ${data.temp / 3 - data.max_temp / 15} -5`}
           >
              <Entity >
         <a-text
@@ -87,7 +109,7 @@ function App() {
           width="4.5"
           height="4.5"
           font="https://cdn.aframe.io/fonts/Exo2Bold.fnt"
-          position="0 6 -1"
+          position="0 8 -1"
         />
        
           </Entity>
@@ -105,7 +127,7 @@ function App() {
       <Entity geometry={{ primitive: 'box', width: 1, height: 4, depth: 1 }}
               material={{ color: 'gold' }}
               position={{x: 2 , y:0 , z:-5}}/> */}
-   <Entity primitive="a-camera" position={{ x: 0, y: 2, z: 2 }} />
+   <Entity primitive="a-camera" position={{ x: 0, y: 1.8, z: 6.2 }} />
         </Scene>
         
     </div>
