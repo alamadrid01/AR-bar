@@ -85,7 +85,7 @@ function App() {
           position="0 2.0 -0.1"
         ></Entity>
           </Entity>
-       <Entity position={{ x: 2, y: -0.5, z: 0 }}>
+       <Entity position={{ x: 2, y: 0, z: 0 }}>
         <a-text
           value="Date"
           color="red"
@@ -99,7 +99,7 @@ function App() {
           position="0 2.0 -0.1"
         ></Entity>
           </Entity>
-      <Entity position="-2.5 -10 0">
+      <Entity position="-2.5 -9.7 0">
       <a-entity lines="points: 0 15 0, 0 10 0, 5 10 0; color:grey"></a-entity>
       </Entity>
       
@@ -141,7 +141,7 @@ function App() {
       <Entity geometry={{ primitive: 'box', width: 1, height: 4, depth: 1 }}
               material={{ color: 'gold' }}
               position={{x: 2 , y:0 , z:-5}}/> */}
-   <Entity primitive="a-camera" position={{ x: 0, y: 1.8, z: 6.2 }} />
+   <Entity primitive="a-camera" position={{ x: -0.6, y: 1.8, z: 6.2 }} />
         </Scene>
         
     </div>
