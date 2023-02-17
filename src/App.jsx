@@ -47,7 +47,7 @@ function App() {
 
       {/* Add frame */}
       <Entity geometry={{ primitive: 'box', width: 13, height: 13, depth: 0.1 }}
-              // material={{ color: 'gray' }}
+              material={{ color: 'lightBlue' }}
               position={{x: 0 , y:3 , z:-5}}
               // animation={{property: 'rotation', dur: 25000, loop:true, to: '0 360 0' }}
               />
@@ -85,6 +85,20 @@ function App() {
           position="0 2.0 -0.1"
         ></Entity>
           </Entity>
+       <Entity position={{ x: 2, y: -0.5, z: 0 }}>
+        <a-text
+          value="Date"
+          color="red"
+          width="4"
+          height="4"
+          font="https://cdn.aframe.io/fonts/Exo2Bold.fnt"
+        />
+        <Entity
+          material={{ shader: "flat", color: "transparent" }}
+          geometry={{ primitive: "plane", width: "auto", height: "auto" }}
+          position="0 2.0 -0.1"
+        ></Entity>
+          </Entity>
       <Entity position="-2.5 -10 0">
       <a-entity lines="points: 0 15 0, 0 10 0, 5 10 0; color:grey"></a-entity>
       </Entity>
@@ -100,7 +114,7 @@ function App() {
               <Entity 
           geometry={{ primitive: 'box', width: 0.5 , height: data.temp / 2, depth: 1}}
           material={{color}}
-          position={`${index - (datas.length / 1.6)} ${data.temp / 3 - data.max_temp / 15} -5`}
+          position={`${index - (datas.length / 1.5)} ${data.temp / 3 - data.max_temp / 15} -5`}
           >
              <Entity >
         <a-text
