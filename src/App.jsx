@@ -9,11 +9,11 @@ function App() {
   const [datas, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const endpoint = [
-    "https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2023-02-14&end_date=2023-02-15&key=1d06aefe85434743b0e0cfd37a7080c5",
-    "https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2023-02-13&end_date=2023-02-14&key=1d06aefe85434743b0e0cfd37a7080c5",
     "https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2023-02-12&end_date=2023-02-13&key=1d06aefe85434743b0e0cfd37a7080c5",
-    "https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2023-02-11&end_date=2023-02-12&key=1d06aefe85434743b0e0cfd37a7080c5",
-    "https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2023-02-10&end_date=2023-02-11&key=1d06aefe85434743b0e0cfd37a7080c5",
+    "https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2023-02-13&end_date=2023-02-14&key=1d06aefe85434743b0e0cfd37a7080c5",
+    "https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2023-02-14&end_date=2023-02-15&key=1d06aefe85434743b0e0cfd37a7080c5",
+    "https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2023-02-15&end_date=2023-02-16&key=1d06aefe85434743b0e0cfd37a7080c5",
+    "https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2023-02-16&end_date=2023-02-17&key=1d06aefe85434743b0e0cfd37a7080c5",
   ];
 
   useEffect(() => {
@@ -43,23 +43,27 @@ const barSpacing = 0.8;
   };
 
 const xHeight= [{
-  label: 25,
+  label: 18,
   height: 1
 },
 {
-  label: 20,
+  label: 15,
+  height: 1
+},
+{
+  label: 12,
   height: 2
 },
 {
-  label: 15,
+  label: 9,
   height: 3
 },
 {
-  label: 10,
+  label: 6,
   height: 4
 },
 {
-  label: 5,
+  label: 3,
   height: 5
 }]
 const yHeight= [{
@@ -181,15 +185,15 @@ const yHeight= [{
           </Entity>
           ))
          }
-        <Entity position="-2.5 -8.53 0">
+        <Entity position="-2.5 -8.54 0">
           <a-entity lines="points: 0 15 0, 0 10 0, 5 10 0; color:grey"></a-entity>
         </Entity>
 
         {/* Add bars */}
         {datas.map((data, index) => {
           const color = barColor(data.temp);
-          const barHeight = data.temp / 1.97;
-          const yPos = (barHeight / 1.6) - (data.temp/ 15);
+          const barHeight = data.temp / 2.97;
+          const yPos = (barHeight / 1.45) - (data.temp/ 15);
           const xPos = (index * (barWidth + barSpacing)) - ((datas.length * (barWidth + barSpacing)) / 2) + (barWidth / 2);
           return (
             <Entity key={index}>
@@ -197,7 +201,7 @@ const yHeight= [{
                 geometry={{
                   primitive: "box",
                   width: barWidth,
-                  height: data.temp / 2,
+                  height: barHeight,
                   depth: 1,
                 }}
                 material={{ color }}
