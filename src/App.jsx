@@ -29,6 +29,8 @@ function App() {
   // console.log(datas)
 
   const maxTemp = Math.max(...datas.map((data) => data.temp));
+  const barWidth = 0.5;
+const barSpacing = 0.8;
 
   const barColor = (temperature) => {
     if (temperature >= 15) {
@@ -60,6 +62,27 @@ const xHeight= [{
   label: 5,
   height: 5
 }]
+const yHeight= [{
+  label: "12/03/2023",
+  height: 0
+},
+{
+  label: "13/03/2023",
+  height: 1
+},
+{
+  label: "14/03/2023",
+  height: 2
+},
+{
+  label: "15/03/2023",
+  height: 3
+},
+{
+  label: "16/03/2023",
+  height: 4
+}]
+
   return (
     <div className="App">
       <Scene>
@@ -67,9 +90,9 @@ const xHeight= [{
 
         {/* Add frame */}
         <Entity
-          geometry={{ primitive: "box", width: 13, height: 13, depth: 0.1 }}
+          geometry={{ primitive: "box", width: 14, height: 14, depth: 0.1 }}
           material={{ color: "lightBlue" }}
-          position={{ x: 0, y: 3, z: -5 }}
+          position={{ x: 0, y: 3.5, z: -5 }}
           // animation={{property: 'rotation', dur: 25000, loop:true, to: '0 360 0' }}
         />
 
@@ -92,19 +115,12 @@ const xHeight= [{
         {/* <Entity geometry={{ primitive: 'line', start: '0 0 0', end: '0 15 0', lineWidth: '0.05' }}
       material={{ color: 'red' }}
       position={'-5 0 0'} /> */}
-       <Entity position={{ x: -3.4, y: 4.9, z: 0 }}>
+       <Entity position={{ x: -3.4, y: 5.8, z: 0 }}>
           <a-text
             value="Temp"
             color="red"
-            width="4"
-            height="4"
-            font="https://cdn.aframe.io/fonts/Exo2Bold.fnt"
-          />
-          <a-text
-            value="Temp"
-            color="green"
-            width="4"
-            height="4"
+            width="4.5"
+            height="4.5"
             font="https://cdn.aframe.io/fonts/Exo2Bold.fnt"
           />
           <Entity
@@ -115,7 +131,7 @@ const xHeight= [{
         </Entity>
        {
         xHeight.map((space) => (
-        <Entity key={space.label} position={{ x: -3, y: 5 - space.height/1.2, z: 0 }}>
+        <Entity key={space.label} position={{ x: -3, y: 5.7 - space.height/1.38, z: 0 }}>
           <a-text
             value={space.label}
             color="red"
@@ -132,12 +148,12 @@ const xHeight= [{
 
         ))
        }
-          <Entity position={{ x: 2, y: 0, z: 0 }}>
+          <Entity position={{ x: 2.2, y: 1, z: 0 }}>
           <a-text
             value="Date"
             color="red"
-            width="4"
-            height="4"
+            width="4.5"
+            height="4.5"
             font="https://cdn.aframe.io/fonts/Exo2Bold.fnt"
           />
           <Entity
@@ -146,26 +162,46 @@ const xHeight= [{
             position="0 2.0 -0.1"
           ></Entity>
         </Entity>
-        <Entity position="-2.5 -9.7 0">
+         {
+          yHeight.map(data => (
+            <Entity key={data.number} position={{ x: -2.8 + data.height / 1.2, y: 0.65, z: 0 }}>
+            <a-text
+              value={data.label}
+              color="red"
+              width="4"
+              height="4"
+              rotation="0 0 45"
+              font="https://cdn.aframe.io/fonts/Exo2Bold.fnt"
+            />
+            <Entity
+              material={{ shader: "flat", color: "transparent" }}
+              geometry={{ primitive: "plane", width: "auto", height: "auto" }}
+              position="0 2.0 -0.1"
+            ></Entity>
+          </Entity>
+          ))
+         }
+        <Entity position="-2.5 -8.53 0">
           <a-entity lines="points: 0 15 0, 0 10 0, 5 10 0; color:grey"></a-entity>
         </Entity>
 
         {/* Add bars */}
         {datas.map((data, index) => {
           const color = barColor(data.temp);
+          const barHeight = data.temp / 1.97;
+          const yPos = (barHeight / 1.6) - (data.temp/ 15);
+          const xPos = (index * (barWidth + barSpacing)) - ((datas.length * (barWidth + barSpacing)) / 2) + (barWidth / 2);
           return (
             <Entity key={index}>
               <Entity
                 geometry={{
                   primitive: "box",
-                  width: 0.5,
+                  width: barWidth,
                   height: data.temp / 2,
                   depth: 1,
                 }}
                 material={{ color }}
-                position={`${index - datas.length / 1.5} ${
-                  data.temp / 3 - data.max_temp / 15
-                } -5`}
+                position={`${xPos} ${yPos} -5`}
               >
                 <Entity>
                   <a-text
@@ -190,7 +226,7 @@ const xHeight= [{
       <Entity geometry={{ primitive: 'box', width: 1, height: 4, depth: 1 }}
               material={{ color: 'gold' }}
               position={{x: 2 , y:0 , z:-5}}/> */}
-        <Entity primitive="a-camera" position={{ x: -0.6, y: 1.8, z: 6.2 }} />
+        <Entity primitive="a-camera" position={{ x: -0.6, y: 3.5, z: 6.2 }} />
       </Scene>
     </div>
   );
